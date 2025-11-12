@@ -1,0 +1,49 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    container_name: postgres
+    environment:
+      POSTGRES_USER: ${PG_USER}
+      POSTGRES_PASSWORD: ${PG_PASSWORD}
+      POSTGRES_DB: ${PG_DB}
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER}"]
+      interval: 10s
+      retries: 5
+
+  spark-notebook:
+    image: jupyter/pyspark-notebook:spark-3.5.0
+    container_name: spark-notebook
+    env_file:
+      - .env
+    environment:
+      - PYSPARK_PYTHON=python3
+      - JUPYTER_PASSWORD=${JUPYTER_PASSWORD}
+    ports:
+      - "8888:8888"
+    volumes:
+      - ./notebooks:/home/jovyan/work
+      - ./data:/data
+      - ./jupyter_config/start-notebook.sh:/usr/local/bin/start-custom.sh
+    entrypoint: ["bash", "/usr/local/bin/start-custom.sh"]
+    depends_on:
+      - postgres
+
+
+  obt-builder:
+    build: ./obt_builder
+    container_name: obt-builder
+    env_file:
+      - .env
+    command: ["python", "build_obt.py", "--mode", "full", "--year-start", "2015", "--year-end", "2025"]
+    depends_on:
+      - postgres
+
+volumes:
+  pgdata:

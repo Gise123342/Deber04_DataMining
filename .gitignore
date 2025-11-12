@@ -1,0 +1,35 @@
+# ───── Archivos grandes y datasets ─────
+data/*.parquet
+data/**/*.parquet
+data/*.csv
+data/**/*.csv
+*.zip
+*.gz
+
+
+# ───── Archivos de configuración locales ─────
+.env
+.env.*
+*.logD
+
+# ───── Notebooks temporales y checkpoints ─────
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/
+*.ipynb_checkpoints/
+
+# ───── Archivos temporales del sistema ─────
+__pycache__/
+*.pyc
+*.pyo
+.DS_Store
+Thumbs.db
+
+# ───── Directorios intermedios de Spark ─────
+spark-warehouse/
+metastore_db/
+.derby.log
+
+# ───── Archivos Spark temporales dentro de carpetas parquet ─────
+data/**/*.crc
+data/**/_SUCCESS
+data/**/*.parquet/
