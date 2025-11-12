@@ -1,4 +1,13 @@
 # Deber04_DataMining
+Giselle Cevallos 00325549)
+
+### Informacion Importante
+
+La Carpeta Data Con parquets fue generada para la carga de datos dentro de el proyecto localmente. A causa de el peso y el limite de espacio para los repositorios en github. No se subieron estos archivos. Pero en el proyecto subido con el link de github se pueden encontrar facilmente:
+
+<img width="409" height="298" alt="image" src="https://github.com/user-attachments/assets/b912ddc2-3cf6-4546-83c3-fd942b721722" />
+<img width="653" height="639" alt="image" src="https://github.com/user-attachments/assets/9eb342b8-3a41-4ce8-9498-dc3a669ac25e" />
+
 
 ### Cómo levantar Compose, ingestar RAW, construir OBT
 
